@@ -4,7 +4,7 @@ const mysql = require('mysql2');
 
 const connection = mysql.createConnection({
     host:'localhost',
-    user:'oleksandr.ivashchenko',
+    user:'root',
     password:'password',
     database:'todo'
 });
@@ -16,7 +16,7 @@ console.log('Oops.Connection to MySql failed.');
 console.log(e);
 }
 
-console.log(connection);
+//console.log(connection); эта команда просто выдает данные о соединении и все с базой данных в консоль
 
 /*my
 API по какой-то причине не работает с этим mysql. Думаю не все данные введены правильно. Убрать комментирование когда решу вопрос с sql.
@@ -54,7 +54,36 @@ res.send('Hello, world!');
 });
 */
 
+api.get('/tasks', (req, res) => {
+
+    connection.query('SELECT * FROM tasks ORDER BY created DESC', (error, results) => {
+
+        if (error) return res.json({error: error});
+        res.json({
+            todo: results.filter(item => !item.completed),
+            completed: results.filter(item => item.completed)
+        });
+    });
+});
+
 api.post('/add', (req, res)=>{
 console.log(req.body);
-res.send('It works!');
+//res.send('It works!'); мы закоментируем это чтобы написать другой код который позволит нам записывать
+//это изменение сразу в базу данных
+connection.query('INSERT INTO tasks (description) VALUES (?)', [req.body.item], (error, results)=>{
+    if (error) return res.json({error: error});
+
+    connection.query ('SELECT LAST_INSERT_ID() FROM tasks', (error, results) => {
+        if (error) return res.json({error: error});
+
+
+
+        res.json({
+
+                id: results[0]['LAST_INSERT_ID()'],
+                description: req.body.item
+            });
+
+    });
+});
 });
