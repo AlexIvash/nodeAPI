@@ -1,4 +1,30 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+const mysql = require('mysql2');
+
+const connection = mysql.createConnection({
+    host:'localhost',
+    user:'oleksandr.ivashchenko',
+    password:'password',
+    database:'todo'
+});
+
+try {
+connection.connect();
+} catch(e) {
+console.log('Oops.Connection to MySql failed.');
+console.log(e);
+}
+
+console.log(connection);
+
+/*my
+API по какой-то причине не работает с этим mysql. Думаю не все данные введены правильно. Убрать комментирование когда решу вопрос с sql.
+
+
+
+ЗАПУСКАТЬ АПИ КОМАНДОЙ node ./src/index.jsç
+*/
 
 
 /*
@@ -10,6 +36,7 @@ next();
 })*/
 const api = express();
 api.use(express.static(__dirname + '/public'));
+api.use(bodyParser.json());
 /*это функция указывающая на папку где лежит index.html
 __dirname - всегда будет указывать на текущее местоположения проекта
 то есть полный путь где находится проект - но чтобы указать поверх папки проекта
@@ -27,6 +54,7 @@ res.send('Hello, world!');
 });
 */
 
-api.post('add', (req, res)=>{
+api.post('/add', (req, res)=>{
+console.log(req.body);
 res.send('It works!');
 });
