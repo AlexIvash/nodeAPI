@@ -59,14 +59,18 @@ api.get('/tasks', (req, res) => {
     connection.query('SELECT * FROM tasks ORDER BY created DESC', (error, results) => {
 
         if (error) return res.json({error: error});
-        res.json({
+        res.json(results
+            /*{
             todo: results.filter(item => !item.completed),
             completed: results.filter(item => item.completed)
-        });
+        }*/
+        );
     });
 });
 
-api.post('/add', (req, res)=>{
+
+
+api.post('/tasks/add', (req, res)=>{
 console.log(req.body);
 //res.send('It works!'); мы закоментируем это чтобы написать другой код который позволит нам записывать
 //это изменение сразу в базу данных
@@ -83,7 +87,24 @@ connection.query('INSERT INTO tasks (description) VALUES (?)', [req.body.item], 
                 id: results[0]['LAST_INSERT_ID()'],
                 description: req.body.item
             });
-
     });
 });
+});
+
+api.post('/tasks/:id/update', (req,res) => {
+//console.log(req.body);
+    connection.query('UPDATE tasks SET completed = ? WHERE id = ?', [req.body.completed, req.params.id], (error, results) =>{
+        if (error) return res.json({error: error});
+
+        res.json({});
+    });
+});
+
+api.post('/tasks/:id/remove', (req, res) => {
+
+    connection.query('DELETE FROM tasks WHERE id = ?', [req.params.id], (error,results) =>{
+        if (error) return res.json({error: error});
+
+        res.json({});
+    });
 });
