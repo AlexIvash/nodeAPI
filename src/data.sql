@@ -1,5 +1,5 @@
 CREATE DATABASE nodeAPI DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
-
+--if doesn't work, try "use nodeAPI" in this line to select created database
 CREATE TABLE tasks (
 id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 description VARCHAR(64) NOT NULL,
