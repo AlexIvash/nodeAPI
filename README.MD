@@ -1,7 +1,7 @@
 Way to start this application:
 
 1)Do NOT forget to nvm use 12 and "npm i" - it will install all dependencies from the package.json.
-If nvm is not installed, download it by command "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh" or from the site and install it by command (nvm install latest). Then do:
+If nvm is not installed, download it by command "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh" or from the site and install it by command (nvm install latest). Then set PATH for it:
 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
@@ -14,6 +14,13 @@ This will help launch nvm from terminal in intellij idea.
 sudo mysql -u root -p
    Ввести пароль "MAC"(запуск super user)
    а а затем пароль базы данных "password" - is a real password)
+
+IF mySQL is not installed. Install it, then in terminal in intellij idea, set PATH for it:
+
+export PATH="/c/Program Files/MySQL/MySQL_Server_8.0/bin:$PATH"
+
+If you have folder with white spaces in name - rename it to name without white spaces, so you can properly write it in your terminal as written above.
+
 4) After it use this command for start application:
 node ./src/index.js - to launch this express app
 OR
