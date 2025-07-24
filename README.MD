@@ -1,6 +1,13 @@
 Way to start this application:
 
 1)Do NOT forget to nvm use 12 and "npm i" - it will install all dependencies from the package.json.
+If nvm is not installed, download it by command "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh" or from the site and install it by command (nvm install latest). Then do:
+
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+This will help launch nvm from terminal in intellij idea.
+
 2) Before starting app - start mysql server from the terminal in the nodeApi folder with using of 
 "mysql.server start"
 3)After it login to mySql
