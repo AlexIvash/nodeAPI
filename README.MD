@@ -21,7 +21,9 @@ If this is a linux, or mac. Then, before starting app - start mysql server from 
 sudo mysql -u root -p
 Ввести пароль "MAC"(запуск super user)
 2. For Windows:
-mysql -u root -p
+mysql start -u root -p - starting server
+Then:
+mysql -u root -p - log in to mysql for commands to mysql
 Ввести пароль mysql.server, который был задан при установке mysql.server.
 3. Если потребует, ввести пароль базы данных "password" - is a real password)
 
