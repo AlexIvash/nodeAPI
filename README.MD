@@ -8,18 +8,24 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 
 This will help launch nvm from terminal in intellij idea.
 
-2) Before starting app - start mysql server from the terminal in the nodeApi folder with using of 
-"mysql.server start"
-3)After it login to mySql
-sudo mysql -u root -p
-   Ввести пароль "MAC"(запуск super user)
-   а а затем пароль базы данных "password" - is a real password)
-
-IF mySQL is not installed. Install it, then in terminal in intellij idea, set PATH for it:
+2) IF mySQL is not installed. Install it, then in terminal in intellij idea, set PATH for it:
 
 export PATH="/c/Program Files/MySQL/MySQL_Server_8.0/bin:$PATH"
-
 If you have folder with white spaces in name - rename it to name without white spaces, so you can properly write it in your terminal as written above.
+
+If mySql installed, then:
+If this is a linux, or mac. Then, before starting app - start mysql server from the terminal in the nodeApi folder with using of 
+"mysql.server start". If it's windows - skip this and proceed to next step.
+3)After it login to mySql:
+1. For linux or mac:
+sudo mysql -u root -p
+Ввести пароль "MAC"(запуск super user)
+2. For Windows:
+mysql -u root -p
+Ввести пароль mysql.server, который был задан при установке mysql.server.
+3. Если потребует, ввести пароль базы данных "password" - is a real password)
+
+
 
 4) After it use this command for start application:
 node ./src/index.js - to launch this express app
